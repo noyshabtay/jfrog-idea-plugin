@@ -32,6 +32,12 @@ public class GoUtils {
         String goPath = GoSdkUtil.retrieveGoPath(project, null);
         if (StringUtils.isNotBlank(goPath)) {
             env.put(GoConstants.GO_PATH, goPath);
+            // put also goPath in PATH, so that go executable can be found
+            if (env.containsKey("PATH")) {
+                env.put("PATH", env.get("PATH") + File.pathSeparator + goPath);
+            } else {
+                env.put("PATH", goPath);
+            }
         }
         Map<String, String> currentConfiguration = VgoProjectSettings.getInstance(project).getEnvironment();
         GO_RELEVANT_ENV.forEach(envKey -> {
