@@ -42,13 +42,12 @@ public class GoScanner extends SingleDescriptorScanner {
         super(project, basePath, ComponentPrefix.GO, executor, Paths.get(basePath, "go.mod").toString(), scanLogic);
         getLog().info("Found Go project: " + getProjectPath());
         Map<String, String> env = Maps.newHashMap(EnvironmentUtil.getEnvironmentMap());
-        String goExec = null;
         try {
-            goExec = GoUtils.getGoExeAndSetEnv(env, project);
+            GoUtils.getGoExeAndSetEnv(env, project);
         } catch (NoClassDefFoundError error) {
             getLog().warn("Go plugin is not installed. Install it to get a better experience.");
         }
-        goTreeBuilder = new GoTreeBuilder(goExec, Paths.get(basePath), descriptorFilePath, env, getLog());
+        goTreeBuilder = new GoTreeBuilder(Paths.get(basePath), descriptorFilePath, env, getLog());
     }
 
     @Override
