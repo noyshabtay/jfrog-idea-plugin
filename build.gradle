@@ -56,7 +56,7 @@ dependencies {
     implementation group: 'org.jfrog.buildinfo', name: 'build-info-extractor', version: buildInfoVersion
     implementation('com.jfrog.ide:ide-plugins-common') {
         version {
-            branch = 'yarn1-hoisting'
+            branch = 'windows-whitespaces'
         }
     }
     implementation group: 'org.jfrog.buildinfo', name: 'build-info-client', version: buildInfoVersion
